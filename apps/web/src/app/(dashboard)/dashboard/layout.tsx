@@ -26,14 +26,6 @@ import {
   Moon,
 } from "lucide-react";
 
-const GRADE_LABELS: Record<string, string> = {
-  sd: "SD",
-  smp: "SMP",
-  sma: "SMA",
-  mahasiswa: "Mahasiswa",
-  self_learner: "Self Learner",
-};
-
 // Buddio Logo Component (uses shared web logo asset)
 const Logo = ({ collapsed = false }: { collapsed?: boolean }) => (
   <div className="flex items-center gap-3">
@@ -103,7 +95,7 @@ function DashboardLayoutInner({
     .join("");
 
   const displayName = user.full_name || user.email.split("@")[0];
-  const gradeLabel = user.grade_level ? (lang === "en" ? t(`dashboard.grade.${user.grade_level}`) : GRADE_LABELS[user.grade_level] ?? user.grade_level) : "â€”";
+  const gradeLabel = user.grade_level ? t(`dashboard.grade.${user.grade_level}`) : "—";
 
 const navSections = [
     {

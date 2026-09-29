@@ -7,14 +7,6 @@ import { useAuth } from "@/context/AuthContext";
 import { useLanguage } from "@/context/LanguageContext";
 import type { User } from "@/lib/types";
 
-const GRADE_LABELS: Record<string, string> = {
-  sd: "Elementary",
-  smp: "Middle School",
-  sma: "High School",
-  mahasiswa: "College",
-  self_learner: "Self Learner",
-};
-
 export default function ProfilePage() {
   const { user, loading } = useAuth();
   const { t } = useLanguage();
@@ -36,7 +28,7 @@ export default function ProfilePage() {
     .join("")
     .slice(0, 2)
     .toUpperCase();
-  const gradeLabel = user.grade_level ? GRADE_LABELS[user.grade_level] : null;
+  const gradeLabel = user.grade_level ? t(`dashboard.grade.${user.grade_level}`) : null;
 
   return (
     <div className="max-w-4xl mx-auto py-6 sm:py-8 space-y-8 animate-in fade-in duration-300">
