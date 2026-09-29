@@ -34,41 +34,16 @@ const GRADE_LABELS: Record<string, string> = {
   self_learner: "Self Learner",
 };
 
-// Buddio Logo Component (B + Smile + Speech Bubble concept)
+// Buddio Logo Component (uses shared web logo asset)
 const Logo = ({ collapsed = false }: { collapsed?: boolean }) => (
   <div className="flex items-center gap-3">
-    <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-[#4F8EF7] to-[#7C5CFF] text-white shadow-md shrink-0 select-none">
-      {/* Speech bubble outline */}
-      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 13.9021 3.59393 15.6605 4.60501 17.102L3.5 20.5L6.898 19.395C8.33953 20.4061 10.0979 21 12 21Z"
-          fill="white"
-        />
-        {/* Stylized B inside that has smiling face */}
-        <path
-          d="M8.5 7.5H11.8C12.8 7.5 13.5 8.1 13.5 9C13.5 9.7 13.0 10.2 12.3 10.4C13.1 10.6 13.7 11.2 13.7 12C13.7 12.9 12.9 13.5 11.8 13.5H8.5V7.5Z"
-          fill="none"
-          stroke="url(#buddio-logo-grad)"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        {/* Smiling eyes */}
-        <circle cx="10.2" cy="9.2" r="0.6" fill="url(#buddio-logo-grad)" />
-        <circle cx="11.8" cy="9.2" r="0.6" fill="url(#buddio-logo-grad)" />
-        <path
-          d="M10.2 12.0C10.5 12.5 11.5 12.5 11.8 12.0"
-          stroke="url(#buddio-logo-grad)"
-          strokeWidth="0.8"
-          strokeLinecap="round"
-        />
-        <defs>
-          <linearGradient id="buddio-logo-grad" x1="8.5" y1="7.5" x2="13.7" y2="13.5" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#4F8EF7" />
-            <stop offset="1" stopColor="#7C5CFF" />
-          </linearGradient>
-        </defs>
-      </svg>
+    <div className="relative flex items-center justify-center w-10 h-10 rounded-xl shrink-0 select-none">
+      <img
+        src="/buddio-logo.png"
+        alt="Buddio"
+        className="w-full h-full object-contain"
+        draggable={false}
+      />
     </div>
     {!collapsed && (
       <span className="text-xl font-bold text-slate-900 dark:text-slate-100 tracking-tight font-sans">
