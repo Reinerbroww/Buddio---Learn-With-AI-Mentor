@@ -93,7 +93,7 @@ export default function PilihTopikPage() {
           value={searchVal}
           onChange={handleSearchChange}
           placeholder={t("topik.searchPlaceholder")}
-          className="w-full pl-11 pr-5 py-4 text-base bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] focus:border-[#4F8EF7] rounded-xl outline-none shadow-xs focus:shadow-md transition-all duration-200 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500"
+          className="w-full pl-11 pr-5 py-4 text-base bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] focus:border-[#4F8EF7] rounded-xl outline-none shadow-xs focus:shadow-md transition-all duration-200 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500"
         />
         {searchVal && (
           <button
@@ -126,8 +126,8 @@ export default function PilihTopikPage() {
                 onClick={() => handleCardSelect(topic.name)}
                 className={`p-5 rounded-xl border text-left flex flex-col justify-between gap-4 transition-all duration-300 cursor-pointer group ${
                   isSelected
-                    ? "border-[#4F8EF7] bg-[#4F8EF7]/5 shadow-sm shadow-[#4F8EF7]/10"
-                    : "border-slate-100 dark:border-[#334155] bg-white dark:bg-[#1e293b] hover:border-slate-300 dark:hover:border-[#334155] hover:scale-[1.02]"
+                    ? "border-[#4F8EF7] bg-[#4F8EF7]/5 shadow-sm"
+                    : "border-slate-100 dark:border-[#334155] bg-white dark:bg-[#172033] hover:border-slate-300 dark:hover:border-[#334155]"
                 }`}
               >
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors shrink-0 ${
@@ -154,7 +154,7 @@ export default function PilihTopikPage() {
           onClick={handleCreateTopic}
           className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-4 font-bold text-sm rounded-xl shadow-md transition-all duration-300 group ${
             isButtonActive
-              ? "bg-gradient-to-r from-[#4F8EF7] to-[#7C5CFF] text-white shadow-[#4F8EF7]/15 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#4F8EF7]/20"
+              ? "bg-[#4F8EF7] hover:bg-[#3B76E6] text-white"
               : "bg-slate-100 dark:bg-[#334155] border border-slate-200/50 dark:border-[#334155] text-slate-400 dark:text-slate-500 cursor-not-allowed shadow-none"
           }`}
         >

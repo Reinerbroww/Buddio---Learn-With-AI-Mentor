@@ -51,14 +51,14 @@ export default function ProgressPage() {
 
   const statCards = [
     { label: t("progress.studyHours"), value: stats?.study_hours ?? 0, icon: Clock, color: "#4F8EF7" },
-    { label: t("progress.activeTopics"), value: stats?.topics ?? 0, icon: Target, color: "#7C5CFF" },
+    { label: t("progress.activeTopics"), value: stats?.topics ?? 0, icon: Target, color: "#4F8EF7" },
     { label: t("progress.streakDays"), value: stats?.streak ?? 0, icon: Flame, color: "#F97316" },
     { label: t("progress.avgProgress"), value: `${stats?.completion ?? 0}%`, icon: Zap, color: "#22C55E" },
   ];
 
   const quotaChips = [
     { label: t("progress.chat"), value: stats?.chat_remaining ?? 0, icon: MessageSquare, color: "#4F8EF7" },
-    { label: t("progress.roadmap"), value: stats?.roadmap_remaining ?? 0, icon: Map, color: "#7C5CFF" },
+    { label: t("progress.roadmap"), value: stats?.roadmap_remaining ?? 0, icon: Map, color: "#4F8EF7" },
     { label: t("progress.quiz"), value: stats?.quiz_remaining ?? 0, icon: FileQuestion, color: "#F97316" },
   ];
 
@@ -83,7 +83,7 @@ export default function ProgressPage() {
         {statCards.map((card) => {
           const Icon = card.icon;
           return (
-            <div key={card.label} className="bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] rounded-2xl p-4 flex items-center gap-3">
+            <div key={card.label} className="bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] rounded-2xl p-4 flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: `${card.color}14`, color: card.color }}>
                 <Icon className="w-5 h-5" />
               </div>
@@ -96,7 +96,7 @@ export default function ProgressPage() {
         })}
       </div>
 
-      <div className="bg-gradient-to-r from-[#4F8EF7]/8 to-[#7C5CFF]/8 border border-slate-100 dark:border-[#334155] rounded-2xl p-4 flex flex-wrap items-center gap-x-6 gap-y-2">
+      <div className="bg-blue-50 dark:bg-blue-400/10 border border-slate-100 dark:border-[#334155] rounded-2xl p-4 flex flex-wrap items-center gap-x-6 gap-y-2">
         <span className="text-[11px] font-extrabold text-slate-500 dark:text-slate-400 uppercase tracking-wider">{t("progress.aiQuota")}</span>
         {quotaChips.map((chip) => {
           const Icon = chip.icon;
@@ -114,14 +114,14 @@ export default function ProgressPage() {
           <h3 className="text-xs font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-wider">{t("progress.perTopic")}</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {items.map((item) => (
-              <div key={item.topic_id} className="bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] rounded-2xl p-5 flex flex-col justify-between gap-4">
+              <div key={item.topic_id} className="bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] rounded-2xl p-5 flex flex-col justify-between gap-4">
                 <div className="space-y-2">
                   <div className="flex items-start justify-between gap-4">
                     <h5 className="font-bold text-slate-900 dark:text-slate-100 text-sm leading-snug">{item.topic_title}</h5>
                     <span className="text-sm font-extrabold text-slate-900 dark:text-slate-100 shrink-0">{item.completion_percentage}%</span>
                   </div>
                   <div className="h-2 w-full bg-slate-100 dark:bg-[#334155] rounded-full overflow-hidden">
-                    <div className="h-full bg-gradient-to-r from-[#4F8EF7] to-[#7C5CFF] rounded-full transition-all duration-500" style={{ width: `${item.completion_percentage}%` }} />
+                    <div className="h-full bg-[#4F8EF7] rounded-full transition-all duration-500" style={{ width: `${item.completion_percentage}%` }} />
                   </div>
                 </div>
                 <div className="flex items-center justify-between gap-4 pt-2 border-t border-slate-50 dark:border-[#334155]">
@@ -131,7 +131,7 @@ export default function ProgressPage() {
                   </span>
                   {item.current_step && (
                     <span className="text-[11px] text-slate-500 dark:text-slate-400 truncate flex items-center gap-1.5">
-                      <BookOpen className="w-3.5 h-3.5 text-[#7C5CFF] shrink-0" />
+                      <BookOpen className="w-3.5 h-3.5 text-[#4F8EF7] shrink-0" />
                       <span className="truncate">{item.current_step}</span>
                     </span>
                   )}
@@ -142,7 +142,7 @@ export default function ProgressPage() {
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center text-center py-20 px-4 space-y-6 animate-in fade-in duration-300">
-          <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-slate-50 dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155]">
+          <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-slate-50 dark:bg-[#172033] border border-slate-100 dark:border-[#334155]">
             <BookOpen className="w-8 h-8 text-[#4F8EF7]" />
           </div>
           <div className="space-y-2 max-w-sm">

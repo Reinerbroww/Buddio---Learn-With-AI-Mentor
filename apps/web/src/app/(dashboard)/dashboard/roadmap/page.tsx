@@ -182,7 +182,7 @@ function RoadmapPageContent() {
       )}
 
       {selectedTopicId == null ? (
-        <div className="bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] rounded-2xl p-6 sm:p-8">
+        <div className="bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] rounded-2xl p-6 sm:p-8">
           <div className="flex items-center gap-2 mb-1.5">
             <Map className="w-5 h-5 text-[#4F8EF7]" />
             <h3 className="font-bold text-slate-900 dark:text-slate-100 text-base">{t("roadmap.pickTopic")}</h3>
@@ -236,7 +236,7 @@ function RoadmapPageContent() {
           <Loader2 className="w-8 h-8 text-[#4F8EF7] animate-spin" />
         </div>
       ) : showRoadmapMissing ? (
-        <div className="bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] rounded-2xl p-8 sm:p-12 flex flex-col items-center text-center gap-6">
+        <div className="bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] rounded-2xl p-8 sm:p-12 flex flex-col items-center text-center gap-6">
           <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-slate-50 dark:bg-[#0f172a] border border-slate-100 dark:border-[#334155]">
             <Map className="w-8 h-8 text-[#4F8EF7]" />
           </div>
@@ -249,7 +249,7 @@ function RoadmapPageContent() {
           <button
             onClick={() => startGenerate(false)}
             disabled={generating || quotaExceeded}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#4F8EF7] to-[#7C5CFF] text-white font-semibold text-sm rounded-xl shadow-md shadow-[#4F8EF7]/15 hover:scale-[1.02] hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#4F8EF7] text-white font-semibold text-sm rounded-xl shadow-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Sparkles className="w-4 h-4" />
             {t("roadmap.createRoadmap")}
@@ -260,8 +260,7 @@ function RoadmapPageContent() {
         </div>
       ) : roadmap ? (
         <>
-          <div className="bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] rounded-2xl p-6 sm:p-8 space-y-6 relative overflow-hidden">
-            <div className="absolute -right-16 -bottom-16 w-36 h-36 bg-gradient-to-br from-[#4F8EF7]/5 to-[#7C5CFF]/5 rounded-full blur-2xl" />
+          <div className="bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] rounded-2xl p-6 sm:p-8 space-y-6 relative overflow-hidden">
             <div className="relative z-10 space-y-5">
               <div className="flex flex-wrap items-center gap-2">
                 {roadmap.mode === "mock" && (
@@ -291,7 +290,7 @@ function RoadmapPageContent() {
                   </span>
                 )}
                 <span className="inline-flex items-center gap-1.5">
-                  <Target className="w-4 h-4 text-[#7C5CFF]" />
+                  <Target className="w-4 h-4 text-[#4F8EF7]" />
                   {t("roadmap.steps", { count: roadmap.steps.length })}
                 </span>
               </div>
@@ -302,7 +301,7 @@ function RoadmapPageContent() {
                 </div>
                 <div className="h-2.5 w-full bg-slate-100 dark:bg-[#334155] rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-[#4F8EF7] to-[#7C5CFF] rounded-full transition-all duration-500"
+                    className="h-full bg-[#4F8EF7] rounded-full transition-all duration-500"
                     style={{ width: `${roadmap.completion_percentage}%` }}
                   />
                 </div>
@@ -327,14 +326,14 @@ function RoadmapPageContent() {
               .map((step) => {
                 const isExpanded = expanded.has(step.id);
                 return (
-                  <div key={step.id} className="bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] rounded-2xl overflow-hidden">
+                  <div key={step.id} className="bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] rounded-2xl overflow-hidden">
                     <div className="flex items-center gap-3 p-4">
                       <button
                         onClick={() => toggleStep(step)}
                         aria-label={step.completed ? t("roadmap.markNotDone") : t("roadmap.markDone")}
                         className={`shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-200 ${
                           step.completed
-                            ? "bg-gradient-to-r from-[#4F8EF7] to-[#7C5CFF] border-transparent"
+                            ? "bg-[#4F8EF7] border-transparent"
                             : "border-slate-300 dark:border-[#334155] hover:border-[#4F8EF7]"
                         }`}
                       >
@@ -349,7 +348,7 @@ function RoadmapPageContent() {
                       {step.lesson_id && (
                         <button
                           onClick={() => router.push(`/dashboard/materi/${step.lesson_id}`)}
-                          className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-semibold text-white bg-gradient-to-r from-[#4F8EF7] to-[#7C5CFF] rounded-lg shadow-xs hover:scale-[1.02] transition-all duration-200"
+                          className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-semibold text-white bg-[#4F8EF7] rounded-lg shadow-xs transition-all duration-200"
                         >
                           <BookOpen className="w-3.5 h-3.5" />
                           {t("roadmap.openMaterial")}
@@ -361,7 +360,7 @@ function RoadmapPageContent() {
                           router.push(`/dashboard/mentor?topic=${selectedTopicId}&prompt=${encodeURIComponent(queryPrompt)}`);
                         }}
                         title={t("roadmap.askMentorTooltip")}
-                        className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-semibold text-[#4F8EF7] bg-[#4F8EF7]/8 hover:bg-[#4F8EF7]/15 border border-[#4F8EF7]/20 rounded-lg shadow-xs hover:scale-[1.02] transition-all duration-200"
+                        className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-semibold text-[#4F8EF7] bg-[#4F8EF7]/8 hover:bg-[#4F8EF7]/15 border border-[#4F8EF7]/20 rounded-lg shadow-xs transition-all duration-200"
                       >
                         <Sparkles className="w-3.5 h-3.5" />
                         <span className="hidden sm:inline">{t("roadmap.askMentor")}</span>
@@ -397,7 +396,7 @@ function RoadmapPageContent() {
       {generating && (
         <>
           <div className="fixed inset-0 bg-slate-950/40 backdrop-blur-xs z-50 animate-in fade-in duration-300" />
-          <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-[#1e293b] rounded-2xl shadow-xl border border-slate-100 dark:border-[#334155] p-6 w-[90%] max-w-sm z-50 animate-in fade-in zoom-in-95 duration-200">
+          <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-[#172033] rounded-2xl shadow-xl border border-slate-100 dark:border-[#334155] p-6 w-[90%] max-w-sm z-50 animate-in fade-in zoom-in-95 duration-200">
             <div className="flex items-center gap-2 pb-3">
               <Sparkles className="w-5 h-5 text-[#4F8EF7] animate-pulse" />
               <h3 className="font-bold text-slate-900 dark:text-slate-100 text-sm">{t("roadmap.generatingTitle")}</h3>
@@ -405,7 +404,7 @@ function RoadmapPageContent() {
             <p className="text-xs text-slate-500 dark:text-slate-400 mb-3">{t("roadmap.generatingDesc")}</p>
             <div className="h-2.5 w-full bg-slate-100 dark:bg-[#334155] rounded-full overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-[#4F8EF7] to-[#7C5CFF] rounded-full transition-all duration-300"
+                className="h-full bg-[#4F8EF7] rounded-full transition-all duration-300"
                 style={{ width: `${progress}%` }}
               />
             </div>

@@ -139,7 +139,7 @@ export default function PengaturanPage() {
         </p>
       </div>
 
-      <section className="bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] rounded-2xl p-6 space-y-6 shadow-xs">
+      <section className="bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] rounded-2xl p-6 space-y-6 shadow-xs">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-[#4F8EF7]/10 flex items-center justify-center shrink-0">
             <SettingsIcon className="w-5 h-5 text-[#4F8EF7]" />
@@ -209,7 +209,7 @@ export default function PengaturanPage() {
           <button
             type="submit"
             disabled={settingsSaving}
-            className="w-full sm:w-auto px-5 py-3 bg-gradient-to-r from-[#4F8EF7] to-[#7C5CFF] text-white font-semibold text-sm rounded-xl shadow-md shadow-[#4F8EF7]/15 hover:opacity-90 hover:scale-[1.01] transition-all flex items-center justify-center gap-2 disabled:opacity-60 disabled:pointer-events-none"
+            className="w-full sm:w-auto px-5 py-3 bg-[#4F8EF7] text-white font-semibold text-sm rounded-xl shadow-md hover:opacity-90 transition-all flex items-center justify-center gap-2 disabled:opacity-60 disabled:pointer-events-none"
           >
             {settingsSaving && <Loader2 className="w-4 h-4 animate-spin" />}
             {t("settings.saveSettings")}
@@ -217,10 +217,10 @@ export default function PengaturanPage() {
         </form>
       </section>
 
-      <section className="bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] rounded-2xl p-6 space-y-6 shadow-xs">
+      <section className="bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] rounded-2xl p-6 space-y-6 shadow-xs">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-[#7C5CFF]/10 flex items-center justify-center shrink-0">
-            <UserIcon className="w-5 h-5 text-[#7C5CFF]" />
+          <div className="w-10 h-10 rounded-xl bg-[#4F8EF7]/10 flex items-center justify-center shrink-0">
+            <UserIcon className="w-5 h-5 text-[#4F8EF7]" />
           </div>
           <div>
             <h3 className="font-bold text-slate-900 dark:text-slate-100 text-sm">{t("settings.profileTitle")}</h3>
@@ -231,7 +231,7 @@ export default function PengaturanPage() {
         <ProfileForm key={user.id} user={user} />
       </section>
 
-      <section className="bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] rounded-2xl p-6 space-y-6 shadow-xs">
+      <section className="bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] rounded-2xl p-6 space-y-6 shadow-xs">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-[#F97316]/10 flex items-center justify-center shrink-0">
             <Lock className="w-5 h-5 text-[#F97316]" />
@@ -293,7 +293,7 @@ export default function PengaturanPage() {
           <button
             type="submit"
             disabled={passwordSaving}
-            className="w-full sm:w-auto px-5 py-3 bg-gradient-to-r from-[#4F8EF7] to-[#7C5CFF] text-white font-semibold text-sm rounded-xl shadow-md shadow-[#4F8EF7]/15 hover:opacity-90 hover:scale-[1.01] transition-all flex items-center justify-center gap-2 disabled:opacity-60 disabled:pointer-events-none"
+            className="w-full sm:w-auto px-5 py-3 bg-[#4F8EF7] text-white font-semibold text-sm rounded-xl shadow-md hover:opacity-90 transition-all flex items-center justify-center gap-2 disabled:opacity-60 disabled:pointer-events-none"
           >
             {passwordSaving && <Loader2 className="w-4 h-4 animate-spin" />}
             {t("settings.changePasswordBtn")}
@@ -376,7 +376,7 @@ function ProfileForm({ user }: { user: User }) {
         <button
           type="submit"
           disabled={saving}
-          className="w-full sm:w-auto px-5 py-3 bg-gradient-to-r from-[#4F8EF7] to-[#7C5CFF] text-white font-semibold text-sm rounded-xl shadow-md shadow-[#4F8EF7]/15 hover:opacity-90 hover:scale-[1.01] transition-all flex items-center justify-center gap-2 disabled:opacity-60 disabled:pointer-events-none"
+          className="w-full sm:w-auto px-5 py-3 bg-[#4F8EF7] text-white font-semibold text-sm rounded-xl shadow-md hover:opacity-90 transition-all flex items-center justify-center gap-2 disabled:opacity-60 disabled:pointer-events-none"
         >
           {saving && <Loader2 className="w-4 h-4 animate-spin" />}
           {t("settings.saveProfile")}

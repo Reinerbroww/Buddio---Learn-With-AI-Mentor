@@ -17,7 +17,7 @@ const GREETING = "Hello! I'm Buddio, your study mentor. What would you like to a
 function BuddioAvatar({ className = "w-7 h-7 text-[10px]" }: { className?: string }) {
   return (
     <div
-      className={`${className} rounded-full bg-gradient-to-br from-[#4F8EF7] to-[#7C5CFF] text-white font-bold flex items-center justify-center shrink-0 select-none`}
+      className={`${className} rounded-full bg-[#4F8EF7] text-white font-bold flex items-center justify-center shrink-0 select-none`}
     >
       B
     </div>
@@ -192,7 +192,7 @@ function MentorPageContent() {
             {error}
           </div>
         )}
-        <div className="flex flex-col items-center justify-center text-center py-20 px-4 space-y-6 animate-in fade-in duration-300 bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] rounded-2xl">
+        <div className="flex flex-col items-center justify-center text-center py-20 px-4 space-y-6 animate-in fade-in duration-300 bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] rounded-2xl">
           <div className="relative flex items-center justify-center w-16 h-16 rounded-full bg-slate-50 dark:bg-[#0f172a] border border-slate-100 dark:border-[#334155]">
             <GraduationCap className="w-8 h-8 text-[#4F8EF7]" />
           </div>
@@ -204,7 +204,7 @@ function MentorPageContent() {
           </div>
           <Link
             href="/dashboard/topik"
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#4F8EF7] to-[#7C5CFF] text-white text-xs font-bold rounded-xl shadow-md shadow-[#4F8EF7]/15 hover:scale-[1.02] transition-all duration-300 group"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#4F8EF7] text-white text-xs font-bold rounded-xl shadow-md transition-all duration-300 group"
           >
             <span>{t("mentor.createTopicBtn")}</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1 duration-200" />
@@ -217,7 +217,7 @@ function MentorPageContent() {
   return (
     <div className="max-w-4xl mx-auto py-6 sm:py-8 space-y-8 animate-in fade-in duration-300">
       <div className="flex items-center gap-3 border-b border-slate-100 dark:border-[#334155] pb-6">
-        <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#4F8EF7] to-[#7C5CFF] text-white flex items-center justify-center shadow-md shadow-[#4F8EF7]/15 shrink-0">
+        <div className="w-11 h-11 rounded-2xl bg-[#4F8EF7] text-white flex items-center justify-center shadow-md shrink-0">
           <Sparkles className="w-5 h-5" />
         </div>
         <div className="space-y-0.5">
@@ -236,7 +236,7 @@ function MentorPageContent() {
         </div>
       )}
 
-      <div className="bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] rounded-2xl p-4 sm:p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+      <div className="bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] rounded-2xl p-4 sm:p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div className="space-y-1.5 min-w-0">
           <label htmlFor="topic-select" className="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">
             {t("mentor.pickTopic")}
@@ -261,7 +261,7 @@ function MentorPageContent() {
             </span>
           )}
           {lastMode === "mock" && (
-            <span className="text-[10px] font-bold text-[#7C5CFF] bg-[#7C5CFF]/8 border border-[#7C5CFF]/20 rounded-full px-3 py-1.5 uppercase tracking-wider">
+            <span className="text-[10px] font-bold text-[#4F8EF7] bg-[#4F8EF7]/8 border border-[#4F8EF7]/20 rounded-full px-3 py-1.5 uppercase tracking-wider">
               {t("mentor.demoMode")}
             </span>
           )}
@@ -276,7 +276,7 @@ function MentorPageContent() {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] rounded-2xl shadow-xs overflow-hidden">
+      <div className="bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] rounded-2xl shadow-xs overflow-hidden">
         <div className="h-[52vh] min-h-[360px] max-h-[560px] overflow-y-auto p-5 sm:p-6 bg-[#F8FAFC]/70 dark:bg-[#0f172a]/70 space-y-4">
           {loadingHistory ? (
             <div className="flex items-center justify-center py-16">
@@ -285,7 +285,7 @@ function MentorPageContent() {
           ) : messages.length === 0 ? (
             <div className="flex items-end gap-2 animate-in fade-in duration-300">
               <BuddioAvatar />
-              <div className="max-w-[80%] px-4 py-3 bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] text-slate-700 dark:text-slate-300 text-sm leading-relaxed rounded-2xl rounded-bl-md shadow-sm">
+              <div className="max-w-[80%] px-4 py-3 bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] text-slate-700 dark:text-slate-300 text-sm leading-relaxed rounded-2xl rounded-bl-md shadow-sm">
                 {GREETING}
               </div>
             </div>
@@ -293,14 +293,14 @@ function MentorPageContent() {
             messages.map((msg) =>
               msg.role === "user" ? (
                 <div key={msg.id} className="flex justify-end animate-in fade-in duration-300">
-                  <div className="max-w-[80%] px-4 py-3 bg-gradient-to-r from-[#4F8EF7] to-[#7C5CFF] text-white text-sm leading-relaxed rounded-2xl rounded-br-md shadow-sm whitespace-pre-wrap break-words">
+                  <div className="max-w-[80%] px-4 py-3 bg-[#4F8EF7] text-white text-sm leading-relaxed rounded-2xl rounded-br-md shadow-sm whitespace-pre-wrap break-words">
                     {msg.message}
                   </div>
                 </div>
               ) : (
                 <div key={msg.id} className="flex items-end gap-2 animate-in fade-in duration-300">
                   <BuddioAvatar />
-                  <div className="max-w-[80%] px-4 py-3 bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] text-slate-700 dark:text-slate-300 text-sm leading-relaxed rounded-2xl rounded-bl-md shadow-sm break-words">
+                  <div className="max-w-[80%] px-4 py-3 bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] text-slate-700 dark:text-slate-300 text-sm leading-relaxed rounded-2xl rounded-bl-md shadow-sm break-words">
                     <ReactMarkdown
                       remarkPlugins={[remarkGfm, remarkMath]}
                       rehypePlugins={[rehypeKatex]}
@@ -351,7 +351,7 @@ function MentorPageContent() {
           <button
             onClick={() => handleSend()}
             disabled={sending || !input.trim() || remaining === 0}
-            className="inline-flex items-center justify-center w-11 h-11 shrink-0 bg-gradient-to-r from-[#4F8EF7] to-[#7C5CFF] text-white rounded-xl shadow-md shadow-[#4F8EF7]/15 hover:scale-[1.05] transition-all disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
+            className="inline-flex items-center justify-center w-11 h-11 shrink-0 bg-[#4F8EF7] text-white rounded-xl shadow-md transition-all disabled:opacity-40 disabled:cursor-not-allowed"
           >
             {sending ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
           </button>

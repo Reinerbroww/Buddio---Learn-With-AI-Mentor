@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
@@ -37,7 +37,7 @@ const GRADE_LABELS: Record<string, string> = {
 // Buddio Logo Component (B + Smile + Speech Bubble concept)
 const Logo = ({ collapsed = false }: { collapsed?: boolean }) => (
   <div className="flex items-center gap-3">
-    <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-[#4F8EF7] to-[#7C5CFF] text-white shadow-md shadow-[#4F8EF7]/20 shrink-0 select-none">
+    <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-[#4F8EF7] to-[#7C5CFF] text-white shadow-md shrink-0 select-none">
       {/* Speech bubble outline */}
       <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -130,15 +130,40 @@ function DashboardLayoutInner({
   const displayName = user.full_name || user.email.split("@")[0];
   const gradeLabel = user.grade_level ? (lang === "en" ? t(`dashboard.grade.${user.grade_level}`) : GRADE_LABELS[user.grade_level] ?? user.grade_level) : "â€”";
 
-  const branding = [
-    { label: t("dashboard.title"), href: "/dashboard", icon: LayoutDashboard },
-    { label: t("dashboard.topic"), href: "/dashboard/topik", icon: BookOpen },
-    { label: t("dashboard.roadmap"), href: "/dashboard/roadmap", icon: Map },
-    { label: t("dashboard.mentor"), href: "/dashboard/mentor", icon: Sparkles },
-    { label: t("dashboard.assessment"), href: "/dashboard/assessment", icon: ClipboardCheck },
-    { label: t("dashboard.progress"), href: "/dashboard/progress", icon: BarChart3 },
-    { label: t("dashboard.settings"), href: "/dashboard/pengaturan", icon: Settings },
+const navSections = [
+    {
+      key: "home",
+      label: t("dashboard.groupHome"),
+      items: [{ label: t("dashboard.title"), href: "/dashboard", icon: LayoutDashboard }],
+    },
+    {
+      key: "learning",
+      label: t("dashboard.groupLearning"),
+      items: [
+        { label: t("dashboard.topic"), href: "/dashboard/topik", icon: BookOpen },
+        { label: t("dashboard.roadmap"), href: "/dashboard/roadmap", icon: Map },
+        { label: t("dashboard.assessment"), href: "/dashboard/assessment", icon: ClipboardCheck },
+      ],
+    },
+    {
+      key: "insights",
+      label: t("dashboard.groupInsights"),
+      items: [{ label: t("dashboard.progress"), href: "/dashboard/progress", icon: BarChart3 }],
+    },
   ];
+
+  const settingsItem = { label: t("dashboard.settings"), href: "/dashboard/pengaturan", icon: Settings };
+
+  const pageTitles: Record<string, string> = {
+    "/dashboard": t("dashboard.title"),
+    "/dashboard/topik": t("dashboard.topic"),
+    "/dashboard/roadmap": t("dashboard.roadmap"),
+    "/dashboard/assessment": t("dashboard.assessment"),
+    "/dashboard/progress": t("dashboard.progress"),
+    "/dashboard/pengaturan": t("dashboard.settings"),
+    "/dashboard/profile": t("dashboard.profile"),
+    "/dashboard/mentor": t("dashboard.mentor"),
+  };
 
   const trendingSearches = ["Machine Learning", "Python Dasar", "Aljabar Linear", "Fisika Termodinamika"];
   const filteredSearches = searchQuery
@@ -147,47 +172,68 @@ function DashboardLayoutInner({
       )
     : trendingSearches;
 
-  // Helper to determine page title
-  const getPageTitle = () => {
-    const current = branding.find((item) => item.href === pathname);
-    return current ? current.label : t("dashboard.title");
+// Helper to determine page title
+  const getPageTitle = () => pageTitles[pathname] ?? t("dashboard.title");
+
+  // Single nav link renderer
+  const renderNavItem = (
+    item: { label: string; href: string; icon: React.ComponentType<{ className?: string }> },
+    collapsed = false
+  ) => {
+    const isActive = pathname === item.href;
+    const Icon = item.icon;
+
+    return (
+      <Link
+        key={item.href}
+        href={item.href}
+        className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors duration-150 group relative ${
+          isActive
+            ? "bg-blue-50 dark:bg-blue-400/10 text-blue-600 dark:text-blue-400 font-semibold"
+            : "text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-[#1e293b] hover:text-slate-900 dark:hover:text-slate-100"
+        } ${collapsed ? "justify-center px-0" : ""}`}
+        onClick={() => setIsMobileOpen(false)}
+      >
+        <Icon
+          className={`w-5 h-5 shrink-0 ${
+            isActive
+              ? "text-blue-600 dark:text-blue-400"
+              : "text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300"
+          }`}
+        />
+        {!collapsed && <span>{item.label}</span>}
+
+        {/* Tooltip for tablet collapse */}
+        {collapsed && (
+          <div className="absolute left-full ml-3 px-2.5 py-1.5 bg-slate-900 dark:bg-[#0f172a] text-white text-xs rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50 shadow-md">
+            {item.label}
+          </div>
+        )}
+      </Link>
+    );
   };
 
   // Nav item rendering logic
   const renderNavItems = (collapsed = false) => {
     return (
-      <nav className="flex-1 space-y-1.5 px-4 py-6">
-        {branding.map((item) => {
-          const isActive = pathname === item.href;
-          const Icon = item.icon;
-
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 group relative ${
-                isActive
-                  ? "bg-[#4F8EF7]/8 dark:bg-[#60a5fa]/12 text-[#4F8EF7] dark:text-[#60a5fa] font-semibold"
-                  : "text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-[#1e293b] hover:text-slate-900 dark:hover:text-slate-100"
-              } ${collapsed ? "justify-center px-0" : ""}`}
-              onClick={() => setIsMobileOpen(false)}
-            >
-              <Icon
-                className={`w-5 h-5 shrink-0 transition-transform duration-200 group-hover:scale-105 ${
-                  isActive ? "text-[#4F8EF7] dark:text-[#60a5fa]" : "text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300"
-                }`}
-              />
-              {!collapsed && <span>{item.label}</span>}
-
-              {/* Tooltip for tablet collapse */}
-              {collapsed && (
-                <div className="absolute left-full ml-3 px-2.5 py-1.5 bg-slate-900 dark:bg-[#0f172a] text-white text-xs rounded-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap z-50 shadow-md">
-                  {item.label}
-                </div>
+      <nav className="flex-1 px-4 py-6">
+        <div className="space-y-6">
+          {navSections.map((section) => (
+            <div key={section.key}>
+              {!collapsed && (
+                <p className="px-4 mb-2 text-[10px] font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
+                  {section.label}
+                </p>
               )}
-            </Link>
-          );
-        })}
+              <div className="space-y-1.5">
+                {section.items.map((item) => renderNavItem(item, collapsed))}
+              </div>
+            </div>
+          ))}
+          <div className="pt-5 border-t border-slate-100 dark:border-[#334155]">
+            {renderNavItem(settingsItem, collapsed)}
+          </div>
+        </div>
       </nav>
     );
   };
@@ -199,7 +245,7 @@ function DashboardLayoutInner({
         {/* User Card */}
         <div className={`flex items-center gap-3 ${collapsed ? "justify-center" : ""}`}>
           {/* Circular Avatar */}
-          <div className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-tr from-[#4F8EF7] to-[#7C5CFF] text-white font-semibold text-sm shadow-sm shrink-0 select-none">
+          <div className="relative flex items-center justify-center w-10 h-10 rounded-full bg-[#4F8EF7] text-white font-semibold text-sm shadow-sm shrink-0 select-none">
             {initials}
             <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 rounded-full border-2 border-white" />
           </div>
@@ -230,7 +276,7 @@ function DashboardLayoutInner({
   return (
     <div className="min-h-screen bg-[#F8FAFC] dark:bg-[#0f172a] text-slate-900 dark:text-slate-100 flex font-sans antialiased transition-colors">
       {/* 1. Sidebar - Desktop & Tablet */}
-      <aside className="fixed top-0 bottom-0 left-0 z-30 bg-white dark:bg-[#1e293b] border-r border-slate-100 dark:border-[#334155] flex flex-col justify-between transition-all duration-300 hidden sm:flex sm:w-20 lg:w-64">
+      <aside className="fixed top-0 bottom-0 left-0 z-30 bg-white dark:bg-[#172033] border-r border-slate-100 dark:border-[#334155] flex flex-col justify-between transition-all duration-300 hidden sm:flex sm:w-20 lg:w-64">
         {/* Top Header */}
         <div className="h-16 flex items-center px-6 border-b border-slate-100 dark:border-[#334155] shrink-0">
           {/* On tablet show only the icon */}
@@ -272,7 +318,7 @@ function DashboardLayoutInner({
             onClick={() => setIsMobileOpen(false)}
           />
           {/* Sliding drawer */}
-          <aside className="fixed top-0 bottom-0 left-0 w-64 bg-white dark:bg-[#1e293b] z-50 shadow-xl flex flex-col justify-between sm:hidden animate-in slide-in-from-left duration-300">
+          <aside className="fixed top-0 bottom-0 left-0 w-64 bg-white dark:bg-[#172033] z-50 shadow-xl flex flex-col justify-between sm:hidden animate-in slide-in-from-left duration-300">
             <div className="h-16 flex items-center justify-between px-6 border-b border-slate-100 dark:border-[#334155] shrink-0">
               <Logo collapsed={false} />
               <button
@@ -328,12 +374,12 @@ function DashboardLayoutInner({
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onFocus={() => setIsSearchFocused(true)}
                   placeholder={t("dashboard.search")}
-                  className="w-full pl-9 pr-4 py-2 text-sm bg-slate-50 dark:bg-[#1e293b] text-slate-800 dark:text-slate-200 border border-slate-100 dark:border-[#334155] rounded-xl outline-none focus:border-[#4F8EF7] focus:bg-white dark:focus:bg-[#0f172a] transition-all duration-200"
+                  className="w-full pl-9 pr-4 py-2 text-sm bg-slate-50 dark:bg-[#172033] text-slate-800 dark:text-slate-200 border border-slate-100 dark:border-[#334155] rounded-xl outline-none focus:border-[#4F8EF7] focus:bg-white dark:focus:bg-[#0f172a] transition-all duration-200"
                   autoFocus
                 />
 
                 {isSearchFocused && (
-                  <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-[#1e293b] rounded-2xl border border-slate-100 dark:border-[#334155] shadow-lg py-3 z-30 animate-in fade-in slide-in-from-top-1 duration-200">
+                  <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-[#172033] rounded-2xl border border-slate-100 dark:border-[#334155] shadow-lg py-3 z-30 animate-in fade-in slide-in-from-top-1 duration-200">
                     <div className="px-4 pb-2 text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
                       {searchQuery ? t("dashboard.searchResults") : t("dashboard.popularTopics")}
                     </div>
@@ -397,11 +443,11 @@ function DashboardLayoutInner({
                       setIsProfileMenuOpen(false);
                     }}
                     placeholder={t("dashboard.search")}
-                    className="w-full pl-9 pr-4 py-2 text-sm bg-slate-50 dark:bg-[#1e293b] hover:bg-slate-100/70 dark:hover:bg-[#334155] focus:bg-white dark:focus:bg-[#0f172a] text-slate-800 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 border border-slate-100 dark:border-[#334155] focus:border-[#4F8EF7] rounded-xl outline-none transition-all duration-200"
+                    className="w-full pl-9 pr-4 py-2 text-sm bg-slate-50 dark:bg-[#172033] hover:bg-slate-100/70 dark:hover:bg-[#334155] focus:bg-white dark:focus:bg-[#0f172a] text-slate-800 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 border border-slate-100 dark:border-[#334155] focus:border-[#4F8EF7] rounded-xl outline-none transition-all duration-200"
                   />
 
                   {isSearchFocused && (
-                    <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-[#1e293b] rounded-2xl border border-slate-100 dark:border-[#334155] shadow-lg py-3 z-30 animate-in fade-in slide-in-from-top-1 duration-200">
+                    <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-[#172033] rounded-2xl border border-slate-100 dark:border-[#334155] shadow-lg py-3 z-30 animate-in fade-in slide-in-from-top-1 duration-200">
                       <div className="px-4 pb-2 text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
                         {searchQuery ? t("dashboard.searchResults") : t("dashboard.popularTopics")}
                       </div>
@@ -472,11 +518,11 @@ function DashboardLayoutInner({
                   >
                     <Bell className="w-5 h-5 transition-transform group-hover:rotate-12 duration-200" />
                     {/* Badge dot */}
-                    <span className="absolute top-2 right-2.5 w-2 h-2 bg-[#7C5CFF] rounded-full border border-white dark:border-[#1e293b]" />
+                    <span className="absolute top-2 right-2.5 w-2 h-2 bg-[#4F8EF7] rounded-full border border-white dark:border-[#1e293b]" />
                   </button>
 
                   {isNotificationOpen && (
-                    <div className="absolute right-0 top-full mt-2 w-80 bg-white dark:bg-[#1e293b] rounded-2xl border border-slate-100 dark:border-[#334155] shadow-lg py-3 z-30 animate-in fade-in slide-in-from-top-1 duration-200">
+                    <div className="absolute right-0 top-full mt-2 w-80 bg-white dark:bg-[#172033] rounded-2xl border border-slate-100 dark:border-[#334155] shadow-lg py-3 z-30 animate-in fade-in slide-in-from-top-1 duration-200">
                       <div className="px-4 py-2 border-b border-slate-50 dark:border-[#334155] flex items-center justify-between">
                         <span className="text-xs font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider">{t("dashboard.notifications")}</span>
                         <button 
@@ -493,7 +539,7 @@ function DashboardLayoutInner({
                           </div>
                           <div className="space-y-1">
                             <p className="text-xs text-slate-800 dark:text-slate-200 leading-normal">
-                              <strong>Roadmap Baru!</strong> AI Mentor menyusun peta belajar untuk Machine Learning. ðŸ¤–
+                              <strong>Roadmap Baru!</strong> Peta belajar Machine Learning sudah siap.
                             </p>
                             <span className="text-[10px] text-slate-400 dark:text-slate-500">10 menit yang lalu</span>
                           </div>
@@ -504,18 +550,18 @@ function DashboardLayoutInner({
                           </div>
                           <div className="space-y-1 flex-1">
                             <p className="text-xs text-slate-800 dark:text-slate-200 leading-normal">
-                              <strong>Kuis Selesai!</strong> Kamu menyelesaikan Kuis Python Dasar dengan skor 90%. ðŸŽ‰
+                              <strong>Kuis Selesai!</strong> Kamu menyelesaikan Kuis Python Dasar dengan skor 90%.
                             </p>
                             <span className="text-[10px] text-slate-400 dark:text-slate-500">2 jam yang lalu</span>
                           </div>
                         </div>
                         <div className="p-4 hover:bg-slate-50 dark:hover:bg-[#334155] transition-colors flex gap-3">
-                          <div className="w-8 h-8 rounded-full bg-[#7C5CFF]/10 text-[#7C5CFF] flex items-center justify-center shrink-0">
+                          <div className="w-8 h-8 rounded-full bg-[#4F8EF7]/10 text-[#4F8EF7] flex items-center justify-center shrink-0">
                             <BarChart3 className="w-4 h-4" />
                           </div>
                           <div className="space-y-1">
                             <p className="text-xs text-slate-800 dark:text-slate-200 leading-normal">
-                              <strong>Pertahankan Streak!</strong> Belajar hari ini untuk menjaga 12 hari streak belajarmu. ðŸ”¥
+                              <strong>Pertahankan Streak!</strong> Belajar hari ini untuk menjaga 12 hari streak belajarmu.
                             </p>
                             <span className="text-[10px] text-slate-400 dark:text-slate-500">5 jam yang lalu</span>
                           </div>
@@ -543,9 +589,9 @@ function DashboardLayoutInner({
                   </button>
 
                   {isProfileMenuOpen && (
-                    <div className="absolute right-0 top-full mt-2 w-56 bg-white dark:bg-[#1e293b] rounded-2xl border border-slate-100 dark:border-[#334155] shadow-lg py-2 z-30 animate-in fade-in slide-in-from-top-1 duration-200">
+                    <div className="absolute right-0 top-full mt-2 w-56 bg-white dark:bg-[#172033] rounded-2xl border border-slate-100 dark:border-[#334155] shadow-lg py-2 z-30 animate-in fade-in slide-in-from-top-1 duration-200">
                       <div className="px-4 py-3 border-b border-slate-50 dark:border-[#334155] flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#4F8EF7] to-[#7C5CFF] text-white flex items-center justify-center font-bold text-sm select-none shrink-0">
+                        <div className="w-10 h-10 rounded-full bg-[#4F8EF7] text-white flex items-center justify-center font-bold text-sm select-none shrink-0">
                           {initials}
                         </div>
                         <div className="min-w-0">

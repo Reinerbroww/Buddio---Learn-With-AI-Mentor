@@ -32,7 +32,7 @@ export default function LoginPage() {
   return (
     <div className="bg-white border border-slate-100 rounded-3xl shadow-xl shadow-slate-200/60 p-8 flex flex-col gap-6">
       <div className="text-center space-y-2">
-        <div className="mx-auto w-12 h-12 bg-gradient-to-br from-[#4F8EF7] to-[#7C5CFF] rounded-2xl flex items-center justify-center shadow-md shadow-[#4F8EF7]/20 mb-4">
+        <div className="mx-auto w-12 h-12 bg-[#4F8EF7] rounded-2xl flex items-center justify-center shadow-sm mb-4">
           <Sparkles className="h-6 w-6 text-white" />
         </div>
         <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Welcome back!</h1>
@@ -74,7 +74,7 @@ export default function LoginPage() {
         <button
           type="submit"
           disabled={submitting}
-          className="w-full mt-2 py-3 bg-gradient-to-r from-[#4F8EF7] to-[#7C5CFF] hover:scale-[1.01] hover:shadow-lg hover:shadow-[#4F8EF7]/20 disabled:opacity-60 disabled:hover:scale-100 text-white font-bold text-sm rounded-xl shadow-md shadow-[#4F8EF7]/15 transition-all flex items-center justify-center gap-2"
+          className="w-full mt-2 py-3 bg-[#4F8EF7] hover:bg-[#3B76E6] disabled:opacity-60 text-white font-semibold text-sm rounded-xl shadow-sm transition-colors duration-150 flex items-center justify-center gap-2"
         >
           {submitting && <Loader2 className="w-4 h-4 animate-spin" />}
           Sign In

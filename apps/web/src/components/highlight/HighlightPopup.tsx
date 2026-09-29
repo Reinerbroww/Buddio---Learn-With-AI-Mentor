@@ -19,7 +19,7 @@ export default function HighlightPopup({ selectedText, onHighlight, onAsk, onClo
 
   return (
     <div className="fixed z-[60] animate-in fade-in zoom-in-95 duration-150" style={{ top: "var(--popup-y, 50%)", left: "var(--popup-x, 50%)", transform: "translate(-50%, 8px)" }}>
-      <div className="bg-white dark:bg-[#1e293b] rounded-2xl shadow-2xl border border-slate-200 dark:border-[#334155] p-4 w-72 space-y-3">
+      <div className="bg-white dark:bg-[#172033] rounded-2xl shadow-2xl border border-slate-200 dark:border-[#334155] p-4 w-72 space-y-3">
         <div className="flex items-start justify-between gap-2">
           <p className="text-[10px] text-slate-400 dark:text-slate-500 leading-relaxed line-clamp-2 flex-1">&quot;{truncated}&quot;</p>
           <button onClick={onClose} className="p-0.5 rounded text-slate-300 dark:text-slate-500 hover:text-slate-500 dark:hover:text-slate-300 transition-colors shrink-0">
@@ -55,7 +55,7 @@ export default function HighlightPopup({ selectedText, onHighlight, onAsk, onClo
               <button
                 key={c}
                 onClick={() => onHighlight(c, note)}
-                className={`flex flex-col items-center gap-1 py-2 rounded-xl border-2 transition-all duration-150 hover:scale-105 ${cfg.bg} ${cfg.border} hover:shadow-md cursor-pointer`}
+                className={`flex flex-col items-center gap-1 py-2 rounded-xl border-2 transition-all duration-150 ${cfg.bg} ${cfg.border} hover:shadow-md cursor-pointer`}
               >
                 <span className="text-base">{cfg.emoji}</span>
                 <span className="text-[9px] font-bold text-slate-600 dark:text-slate-300 leading-tight">{cfg.label}</span>

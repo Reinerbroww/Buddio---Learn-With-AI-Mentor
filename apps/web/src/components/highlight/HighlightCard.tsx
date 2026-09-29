@@ -29,7 +29,7 @@ export default function HighlightCard({
   };
 
   return (
-    <div className="bg-white dark:bg-[#1e293b] rounded-2xl shadow-2xl border border-slate-200 dark:border-[#334155] p-4 w-72 space-y-3">
+    <div className="bg-white dark:bg-[#172033] rounded-2xl shadow-2xl border border-slate-200 dark:border-[#334155] p-4 w-72 space-y-3">
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-1.5">
             <span className="text-sm">{cfg.emoji}</span>

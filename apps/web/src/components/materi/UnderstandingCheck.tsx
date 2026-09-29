@@ -31,7 +31,7 @@ export default function UnderstandingCheck({ stepTitle, topicTitle, onAsk }: Und
   };
 
   return (
-    <div className="bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] rounded-2xl p-5 sm:p-6">
+    <div className="bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] rounded-2xl p-5 sm:p-6">
       <div className="flex items-center gap-2.5 mb-4">
         <div className="w-9 h-9 rounded-xl bg-[#22C55E]/10 flex items-center justify-center">
           <HelpCircle className="w-5 h-5 text-[#16A34A]" />

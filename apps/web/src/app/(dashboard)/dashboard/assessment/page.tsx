@@ -205,7 +205,7 @@ export default function AssessmentPage() {
                 className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-white font-semibold text-sm rounded-xl shadow-md transition-all duration-300 group cursor-pointer ${
                   !selectedTopicId || generating || quotaExceeded
                     ? "bg-slate-300 shadow-none cursor-not-allowed"
-                    : "bg-gradient-to-r from-[#4F8EF7] to-[#7C5CFF] shadow-[#4F8EF7]/15 hover:scale-[1.02] hover:shadow-lg hover:shadow-[#4F8EF7]/20"
+                    : "bg-[#4F8EF7]"
                 }`}
               >
                 {generating ? (
@@ -241,7 +241,7 @@ export default function AssessmentPage() {
             </div>
           ) : (
             <>
-              <div className="bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] rounded-2xl p-4 sm:p-5 space-y-2.5">
+              <div className="bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] rounded-2xl p-4 sm:p-5 space-y-2.5">
                 <label className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
                   <BookOpen className="w-3.5 h-3.5 text-[#4F8EF7]" />
                   {t("assessment.pickTopic")}
@@ -290,7 +290,7 @@ export default function AssessmentPage() {
                       <button
                         key={quiz.id}
                         onClick={() => startQuiz(quiz)}
-                        className="bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] rounded-2xl p-5 text-left hover:border-[#4F8EF7]/30 hover:shadow-md transition-all duration-200 group cursor-pointer"
+                        className="bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] rounded-2xl p-5 text-left hover:border-[#4F8EF7]/30 hover:shadow-md transition-all duration-200 group cursor-pointer"
                       >
                         <div className="flex items-start justify-between gap-3">
                           <div className="min-w-0">
@@ -307,7 +307,7 @@ export default function AssessmentPage() {
                               )}
                             </div>
                           </div>
-                          <span className="w-9 h-9 rounded-xl bg-[#4F8EF7]/10 text-[#4F8EF7] flex items-center justify-center shrink-0 transition-colors group-hover:bg-gradient-to-r group-hover:from-[#4F8EF7] group-hover:to-[#7C5CFF] group-hover:text-white">
+                          <span className="w-9 h-9 rounded-xl bg-[#4F8EF7]/10 text-[#4F8EF7] flex items-center justify-center shrink-0 transition-colors group-hover:bg-[#4F8EF7] group-hover:text-white">
                             <Play className="w-4 h-4" />
                           </span>
                         </div>
@@ -352,16 +352,16 @@ export default function AssessmentPage() {
 
           <div className="h-2 w-full bg-slate-100 dark:bg-[#334155] rounded-full overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-[#4F8EF7] to-[#7C5CFF] rounded-full transition-all duration-500"
+              className="h-full bg-[#4F8EF7] rounded-full transition-all duration-500"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
 
           <div className="space-y-6">
             {activeQuiz.questions.map((q, idx) => (
-              <div key={q.id} className="bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] rounded-2xl p-5 sm:p-6">
+              <div key={q.id} className="bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] rounded-2xl p-5 sm:p-6">
                 <div className="flex items-start gap-3">
-                  <span className="shrink-0 w-7 h-7 rounded-lg bg-gradient-to-br from-[#4F8EF7] to-[#7C5CFF] text-white text-xs font-bold flex items-center justify-center">
+                  <span className="shrink-0 w-7 h-7 rounded-lg bg-[#4F8EF7] text-white text-xs font-bold flex items-center justify-center">
                     {idx + 1}
                   </span>
                   <p className="font-semibold text-slate-900 dark:text-slate-100 text-sm sm:text-base leading-relaxed pt-0.5">
@@ -376,7 +376,7 @@ export default function AssessmentPage() {
                         key={optIdx}
                         className={`flex items-center gap-3 px-4 py-3 rounded-xl border cursor-pointer transition-all duration-200 ${
                           selected
-                            ? "border-[#4F8EF7] bg-[#4F8EF7]/8 shadow-sm shadow-[#4F8EF7]/10"
+                            ? "border-[#4F8EF7] bg-[#4F8EF7]/8 shadow-sm"
                             : "border-slate-100 dark:border-[#334155] bg-white dark:bg-[#0f172a] hover:border-slate-300 dark:hover:border-[#334155] hover:bg-slate-50 dark:hover:bg-[#334155]"
                         }`}
                       >
@@ -403,7 +403,7 @@ export default function AssessmentPage() {
             ))}
           </div>
 
-          <div className="sticky bottom-4 bg-white/90 dark:bg-[#1e293b]/90 backdrop-blur-sm border border-slate-100 dark:border-[#334155] rounded-2xl p-4 flex flex-col sm:flex-row items-center gap-3 shadow-xs">
+          <div className="sticky bottom-4 bg-white/90 dark:bg-[#172033]/90 backdrop-blur-sm border border-slate-100 dark:border-[#334155] rounded-2xl p-4 flex flex-col sm:flex-row items-center gap-3 shadow-xs">
             <div className="flex-1 text-xs text-slate-500 dark:text-slate-400">
               {allAnswered ? (
                 <span className="font-semibold text-emerald-600 inline-flex items-center gap-1.5">
@@ -421,7 +421,7 @@ export default function AssessmentPage() {
               disabled={!allAnswered || submitting}
               className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 text-white font-semibold text-sm rounded-xl transition-all duration-300 ${
                 allAnswered && !submitting
-                  ? "bg-gradient-to-r from-[#4F8EF7] to-[#7C5CFF] shadow-md shadow-[#4F8EF7]/15 hover:scale-[1.02] hover:shadow-lg cursor-pointer"
+                  ? "bg-[#4F8EF7] shadow-md cursor-pointer"
                   : "bg-slate-200 cursor-not-allowed"
               }`}
             >
@@ -434,9 +434,9 @@ export default function AssessmentPage() {
 
       {view === "result" && activeQuiz && result && (
         <div className="space-y-8 animate-in fade-in duration-300">
-          <div className="bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] rounded-2xl p-6 sm:p-8">
+          <div className="bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] rounded-2xl p-6 sm:p-8">
             <div className="flex flex-col items-center text-center space-y-5">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#4F8EF7] to-[#7C5CFF] text-white flex items-center justify-center shadow-lg shadow-[#4F8EF7]/20">
+              <div className="w-20 h-20 rounded-full bg-[#4F8EF7] text-white flex items-center justify-center shadow-lg">
                 {percent >= 80 ? <Trophy className="w-9 h-9" /> : percent >= 50 ? <Smile className="w-9 h-9" /> : <Target className="w-9 h-9" />}
               </div>
               <div className="space-y-1.5">
@@ -470,7 +470,7 @@ export default function AssessmentPage() {
             <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
               <button
                 onClick={handleRetake}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#4F8EF7] to-[#7C5CFF] text-white font-semibold text-sm rounded-xl shadow-md shadow-[#4F8EF7]/15 hover:scale-[1.02] hover:shadow-lg transition-all duration-300 cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#4F8EF7] text-white font-semibold text-sm rounded-xl shadow-md transition-all duration-300 cursor-pointer"
               >
                 <RotateCcw className="w-4 h-4" />
                 {t("assessment.retake")}
@@ -546,7 +546,7 @@ export default function AssessmentPage() {
       {generating && (
         <>
           <div className="fixed inset-0 bg-slate-950/40 backdrop-blur-xs z-50 animate-in fade-in duration-300" />
-          <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-[#1e293b] rounded-2xl shadow-xl border border-slate-100 dark:border-[#334155] p-8 w-[90%] max-w-sm z-50 animate-in fade-in zoom-in-95 duration-200 text-center space-y-4">
+          <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-[#172033] rounded-2xl shadow-xl border border-slate-100 dark:border-[#334155] p-8 w-[90%] max-w-sm z-50 animate-in fade-in zoom-in-95 duration-200 text-center space-y-4">
             <div className="mx-auto w-14 h-14 rounded-full bg-[#4F8EF7]/10 flex items-center justify-center">
               <Loader2 className="w-7 h-7 text-[#4F8EF7] animate-spin" />
             </div>

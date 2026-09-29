@@ -51,7 +51,7 @@ export default function ProfilePage() {
 
       <div className="bg-white border border-slate-100 rounded-2xl p-6 sm:p-8 shadow-xs">
         <div className="flex flex-col sm:flex-row sm:items-center gap-6">
-          <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-[#4F8EF7] to-[#7C5CFF] flex items-center justify-center text-white text-2xl sm:text-3xl font-extrabold shrink-0 shadow-md shadow-[#4F8EF7]/15">
+          <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#4F8EF7] flex items-center justify-center text-white text-2xl sm:text-3xl font-extrabold shrink-0 shadow-md">
             {initials}
           </div>
           <div className="min-w-0 flex-1 space-y-2">
@@ -60,7 +60,7 @@ export default function ProfilePage() {
                 {displayName}
               </h3>
               {gradeLabel && (
-                <span className="inline-block px-2.5 py-0.5 text-[10px] font-bold text-[#7C5CFF] bg-[#7C5CFF]/8 rounded-full border border-[#7C5CFF]/15">
+                <span className="inline-block px-2.5 py-0.5 text-[10px] font-bold text-[#4F8EF7] bg-[#4F8EF7]/8 rounded-full border border-[#4F8EF7]/15">
                   {gradeLabel}
                 </span>
               )}
@@ -160,7 +160,7 @@ function ProfileForm({ user }: { user: User }) {
         <button
           type="submit"
           disabled={saving}
-          className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#4F8EF7] to-[#7C5CFF] text-white font-semibold text-sm rounded-xl shadow-md shadow-[#4F8EF7]/15 hover:scale-[1.02] hover:shadow-lg transition-all duration-300 disabled:opacity-60 disabled:hover:scale-100 cursor-pointer"
+          className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#4F8EF7] text-white font-semibold text-sm rounded-xl shadow-md transition-all duration-300 disabled:opacity-60 cursor-pointer"
         >
           {saving && <Loader2 className="w-4 h-4 animate-spin" />}
           {t("profile.saveChanges")}

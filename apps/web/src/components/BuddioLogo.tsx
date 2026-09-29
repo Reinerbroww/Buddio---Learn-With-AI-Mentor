@@ -19,7 +19,7 @@ export function BuddioLogo({
   const mark = (
     <div
       className={cn(
-        "relative flex items-center justify-center bg-gradient-to-br from-[#4F8EF7] to-[#7C5CFF] text-white shadow-md shadow-[#4F8EF7]/20 shrink-0 select-none",
+        "relative flex items-center justify-center bg-gradient-to-br from-[#4F8EF7] to-[#7C5CFF] text-white shadow-md shrink-0 select-none",
         box
       )}
     >

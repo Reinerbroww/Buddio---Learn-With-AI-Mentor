@@ -73,9 +73,9 @@ function NotesPanel({ lessonId, onClose }: { lessonId: number; onClose: () => vo
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200 dark:border-[#334155] bg-white dark:bg-[#1e293b] shrink-0">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-slate-200 dark:border-[#334155] bg-white dark:bg-[#172033] shrink-0">
         <div className="flex items-center gap-2">
-          <StickyNote className="w-4 h-4 text-[#7C5CFF]" />
+          <StickyNote className="w-4 h-4 text-[#4F8EF7]" />
           <h3 className="font-bold text-slate-900 dark:text-slate-100 text-sm">{t("materi.notesTitle")}</h3>
         </div>
         <div className="flex items-center gap-2">
@@ -247,7 +247,7 @@ function MateriPageContent() {
       {error && <div className="text-xs bg-rose-50 border border-rose-200 text-rose-600 rounded-xl px-4 py-3">{error}</div>}
 
       {highlights.length > 0 && (
-        <div className="flex items-center gap-3 flex-wrap bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] rounded-xl px-4 py-2.5">
+        <div className="flex items-center gap-3 flex-wrap bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] rounded-xl px-4 py-2.5">
           <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">{t("materi.highlightLabel")}</span>
           {yellowCount > 0 && (
             <button onClick={() => scrollToHighlight("yellow")} className="text-[10px] font-semibold text-amber-700 bg-amber-100 hover:bg-amber-200 px-2 py-0.5 rounded-full transition-colors cursor-pointer">
@@ -273,7 +273,7 @@ function MateriPageContent() {
       )}
 
       {!hasRichContent && !generating ? (
-        <div className="bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] rounded-2xl overflow-hidden">
+        <div className="bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] rounded-2xl overflow-hidden">
           {lesson.topic_title && (
             <div className="px-6 sm:px-8 pt-6 sm:pt-8 flex items-center gap-2 text-[11px] font-bold text-[#4F8EF7] uppercase tracking-wider">
               <BookOpen className="w-3.5 h-3.5" />
@@ -281,7 +281,7 @@ function MateriPageContent() {
             </div>
           )}
           <div className="px-6 sm:px-8 py-8 sm:py-10 space-y-6">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#4F8EF7] to-[#7C5CFF] text-white flex items-center justify-center shadow-md shadow-[#4F8EF7]/15">
+            <div className="w-14 h-14 rounded-2xl bg-[#4F8EF7] text-white flex items-center justify-center shadow-md">
               <Sparkles className="w-7 h-7" />
             </div>
             <div className="space-y-1.5 max-w-xl">
@@ -321,7 +321,7 @@ function MateriPageContent() {
               <button
                 onClick={handleGenerateContent}
                 disabled={generating}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#4F8EF7] to-[#7C5CFF] text-white font-semibold text-sm rounded-xl shadow-md shadow-[#4F8EF7]/15 hover:scale-[1.02] hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#4F8EF7] text-white font-semibold text-sm rounded-xl shadow-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {t("materi.introStart")} <ArrowRight className="w-4 h-4" />
               </button>
@@ -329,7 +329,7 @@ function MateriPageContent() {
           </div>
         </div>
       ) : generating ? (
-        <div className="bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] rounded-2xl p-6 sm:p-8 text-center space-y-5">
+        <div className="bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] rounded-2xl p-6 sm:p-8 text-center space-y-5">
           <Loader2 className="w-10 h-10 text-[#4F8EF7] animate-spin mx-auto" />
           <div className="space-y-1.5">
             <h3 className="font-bold text-slate-900 dark:text-slate-100 text-sm">{t("materi.generating")}</h3>
@@ -338,7 +338,7 @@ function MateriPageContent() {
         </div>
       ) : (
         <>
-          <div className="bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] rounded-2xl p-5 sm:p-7 space-y-6">
+          <div className="bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] rounded-2xl p-5 sm:p-7 space-y-6">
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-2.5">
                 <div className="w-9 h-9 rounded-xl bg-[#4F8EF7]/10 flex items-center justify-center">
@@ -379,7 +379,7 @@ function MateriPageContent() {
           </div>
 
           {rawVideos.length > 0 && videos.length === 0 && (
-            <div className="bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] rounded-2xl p-5 sm:p-7 flex items-center gap-4">
+            <div className="bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] rounded-2xl p-5 sm:p-7 flex items-center gap-4">
               <div className="w-11 h-11 rounded-2xl bg-slate-100 dark:bg-[#0f172a] flex items-center justify-center shrink-0">
                 <Video className="w-5 h-5 text-slate-400 dark:text-slate-500" />
               </div>
@@ -390,7 +390,7 @@ function MateriPageContent() {
           )}
 
           {videos.length > 0 && (
-            <div className="bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] rounded-2xl p-5 sm:p-7 space-y-5">
+            <div className="bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] rounded-2xl p-5 sm:p-7 space-y-5">
               <div className="flex items-center gap-2.5">
                 <div className="w-9 h-9 rounded-xl bg-rose-50 dark:bg-rose-500/10 flex items-center justify-center">
                   <Video className="w-5 h-5 text-rose-500" />
@@ -417,7 +417,7 @@ function MateriPageContent() {
                         </>
                       ) : (
                         <a href={v.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 hover:bg-slate-100/80 dark:hover:bg-[#334155] transition-colors">
-                          <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-rose-100 to-rose-50 dark:from-rose-500/20 dark:to-rose-500/10 flex items-center justify-center shrink-0">
+                          <div className="w-14 h-14 rounded-xl bg-rose-50 dark:bg-rose-500/10 flex items-center justify-center shrink-0">
                             <Play className="w-6 h-6 text-rose-500 ml-0.5" />
                           </div>
                           <div className="flex-1 min-w-0">
@@ -434,16 +434,16 @@ function MateriPageContent() {
             </div>
           )}
 
-          <div className="bg-white dark:bg-[#1e293b] border border-slate-100 dark:border-[#334155] rounded-2xl p-5 sm:p-7">
+          <div className="bg-white dark:bg-[#172033] border border-slate-100 dark:border-[#334155] rounded-2xl p-5 sm:p-7">
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#4F8EF7] to-[#7C5CFF] text-white flex items-center justify-center shadow-md shadow-[#4F8EF7]/15 shrink-0">
+              <div className="w-11 h-11 rounded-2xl bg-[#4F8EF7] text-white flex items-center justify-center shadow-md shrink-0">
                 <MessageCircle className="w-5 h-5" />
               </div>
               <div className="flex-1 min-w-0">
                 <h3 className="font-bold text-slate-900 dark:text-slate-100 text-sm">{t("materi.stillConfused")}</h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mt-0.5">{t("materi.stillConfusedDesc", { step: lesson.step_title ?? "" })}</p>
               </div>
-              <button onClick={handleTanyaBuddio} className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#4F8EF7] to-[#7C5CFF] text-white font-semibold text-sm rounded-xl shadow-md shadow-[#4F8EF7]/15 hover:scale-[1.02] hover:shadow-lg transition-all duration-300">
+              <button onClick={handleTanyaBuddio} className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-[#4F8EF7] text-white font-semibold text-sm rounded-xl shadow-md transition-all duration-300">
                 <MessageCircle className="w-4 h-4" /> {t("materi.askBuddio")}
               </button>
             </div>
@@ -462,7 +462,7 @@ function MateriPageContent() {
   if (fullscreen) {
     return (
       <div className="fixed inset-0 z-50 flex flex-col bg-[#F8FAFC] dark:bg-[#0f172a]">
-        <div className="flex items-center justify-between px-6 py-3 bg-white dark:bg-[#1e293b] border-b border-slate-200 dark:border-[#334155] shrink-0">
+        <div className="flex items-center justify-between px-6 py-3 bg-white dark:bg-[#172033] border-b border-slate-200 dark:border-[#334155] shrink-0">
           <div className="flex items-center gap-3 min-w-0">
             <button onClick={() => setFullscreen(false)} className="inline-flex items-center gap-1.5 text-[11px] font-bold text-slate-400 dark:text-slate-500 hover:text-slate-700 dark:hover:text-slate-200 transition-colors cursor-pointer">
               <Minimize2 className="w-3.5 h-3.5" /> {t("materi.exitStudyMode")}
@@ -484,12 +484,12 @@ function MateriPageContent() {
             <button
               onClick={() => setShowNotes(!showNotes)}
               className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-semibold rounded-lg transition-all duration-200 ${
-                showNotes ? "text-white bg-[#7C5CFF] shadow-md shadow-[#7C5CFF]/15" : "text-[#7C5CFF] bg-[#7C5CFF]/8 hover:bg-[#7C5CFF]/15 border border-[#7C5CFF]/20"
+                showNotes ? "text-white bg-[#4F8EF7] shadow-md" : "text-[#4F8EF7] bg-[#4F8EF7]/8 hover:bg-[#4F8EF7]/15 border border-[#4F8EF7]/20"
               }`}
             >
               <StickyNote className="w-3.5 h-3.5" /> {t("materi.notes")}
             </button>
-            <button onClick={handleComplete} disabled={completing} className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-semibold text-white bg-gradient-to-r from-[#22C55E] to-emerald-400 rounded-lg shadow-md hover:scale-[1.02] transition-all duration-300 disabled:opacity-50">
+            <button onClick={handleComplete} disabled={completing} className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-semibold text-white bg-[#22C55E] rounded-lg shadow-md transition-all duration-300 disabled:opacity-50">
               {completing ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <CheckCircle2 className="w-3.5 h-3.5" />} {t("materi.done")}
             </button>
           </div>
@@ -501,7 +501,7 @@ function MateriPageContent() {
             </div>
           </div>
           {showNotes && (
-            <div className="w-[380px] shrink-0 border-l border-slate-200 dark:border-[#334155] bg-white dark:bg-[#1e293b] animate-in slide-in-from-right duration-300">
+            <div className="w-[380px] shrink-0 border-l border-slate-200 dark:border-[#334155] bg-white dark:bg-[#172033] animate-in slide-in-from-right duration-300">
               <NotesPanel lessonId={lessonId} onClose={() => setShowNotes(false)} />
             </div>
           )}
@@ -526,7 +526,7 @@ function MateriPageContent() {
             className={`inline-flex items-center gap-1.5 px-3 py-2.5 text-xs font-semibold rounded-xl transition-all duration-200 ${
               highlightMode
                 ? "text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-500/15 border border-amber-200 dark:border-amber-500/30 shadow-sm"
-                : "text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-[#1e293b] border border-slate-200 dark:border-[#334155] hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#334155]"
+                : "text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-[#172033] border border-slate-200 dark:border-[#334155] hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#334155]"
             }`}
           >
             <Highlighter className="w-4 h-4" /> <span className="hidden sm:inline">{highlightMode ? t("materi.highlightOn") : t("materi.highlight")}</span>
@@ -534,7 +534,7 @@ function MateriPageContent() {
           <button onClick={() => { setFullscreen(true); setShowNotes(true); }} className="inline-flex items-center gap-1.5 px-3 py-2.5 text-xs font-semibold text-[#4F8EF7] bg-[#4F8EF7]/8 hover:bg-[#4F8EF7]/15 border border-[#4F8EF7]/20 rounded-xl transition-all duration-200">
             <Maximize2 className="w-4 h-4" /> <span className="hidden sm:inline">{t("materi.studyMode")}</span>
           </button>
-          <button onClick={handleComplete} disabled={completing} className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold text-white bg-gradient-to-r from-[#22C55E] to-emerald-400 rounded-xl shadow-md hover:scale-[1.02] transition-all duration-300 disabled:opacity-50">
+          <button onClick={handleComplete} disabled={completing} className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold text-white bg-[#22C55E] rounded-xl shadow-md transition-all duration-300 disabled:opacity-50">
             {completing ? <Loader2 className="w-4 h-4 animate-spin" /> : <CheckCircle2 className="w-4 h-4" />} {t("materi.done")}
           </button>
         </div>
